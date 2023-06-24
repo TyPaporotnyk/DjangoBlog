@@ -34,3 +34,14 @@ def delete_old_file(path_file):
     """
     if os.path.exists(path_file):
         os.remove(path_file)
+
+
+def get_redirect_name(request):
+	"""
+    Function to return a redirect url name
+    """
+	redirect = None
+	if request.GET:
+		if request.GET.get("next"):
+			redirect = str(request.GET.get("next"))
+	return redirect
