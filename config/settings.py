@@ -1,15 +1,19 @@
 import os
-from pathlib import Path
 
+from pathlib import Path
+from dotenv import load_dotenv
+
+
+load_dotenv()
 
 # Base settings
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.environ.get("SECRET_KEY", "django-insecure-+qxo-$t-lyccc-(!mkcv+(#yts-%75sb(-nt4jr&0vmq_)jasp")
+SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-+qxo-$t-lyccc-(!mkcv+(#yts-%75sb(-nt4jr&0vmq_)jasp")
 
-DEBUG = bool(int(os.environ.get("DEBUG", False)))
+DEBUG = bool(int(os.getenv("DEBUG", False)))
 
-ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "127.0.0.1").split(" ")
+ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1").split(" ")
 
 
 # Application definition
@@ -20,6 +24,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
+    "account",
 ]
 
 MIDDLEWARE = [
@@ -33,6 +39,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "config.urls"
+
 
 # Templates
 TEMPLATES = [
@@ -64,12 +71,12 @@ DATABASES = {
 
 # DATABASES = {
 #     "default": {
-#         "ENGINE": os.environ.get("POSTGRES_ENGINE", "django.db.backends.sqlite3"),
-#         "NAME": os.environ.get("POSTGRES_DB", os.path.join(BASE_DIR, "db.sqlite3")),
-#         "USER": os.environ.get("POSTGRES_USER", "user"),
-#         "PASSWORD": os.environ.get("POSTGRES_PASSWORD", "password"),
-#         "HOST": os.environ.get("POSTGRES_HOST", "localhost"),
-#         "PORT": os.environ.get("POSTGRES_PORT", "5432"),
+#         "ENGINE": os.getenv("POSTGRES_ENGINE", "django.db.backends.sqlite3"),
+#         "NAME": os.getenv("POSTGRES_DB", os.path.join(BASE_DIR, "db.sqlite3")),
+#         "USER": os.getenv("POSTGRES_USER", "user"),
+#         "PASSWORD": os.getenv("POSTGRES_PASSWORD", "password"),
+#         "HOST": os.getenv("POSTGRES_HOST", "localhost"),
+#         "PORT": os.getenv("POSTGRES_PORT", "5432"),
 #     }
 # }
 
@@ -90,6 +97,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'account.Account'
+
 
 # Internationalization
 LANGUAGE_CODE = 'en-us'
@@ -102,8 +111,8 @@ USE_L10N = True
 
 USE_TZ = True
 
-# Static / Media
 
+# Static / Media
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
