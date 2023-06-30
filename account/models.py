@@ -1,10 +1,9 @@
 from uuid import uuid4
-import os
 
 from django.db import models
 from django.dispatch import receiver
 from django.core.validators import FileExtensionValidator
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser
 from django.utils.translation import gettext_lazy as _
 
 from .services import (
@@ -13,43 +12,7 @@ from .services import (
     validate_size_image,
     delete_old_file
 )
-
-
-class AccountManager(BaseUserManager):
-    """
-    Account manager to create a custom user
-    """
-    def create_user(self, nickname, email, password=None):  
-        """
-        Create a default user
-        """     
-        if not nickname:
-            raise ValueError("You must have a nickname") 
-        if not email:
-            raise ValueError("You must have an email address")
-        
-        user = self.model(
-            email=self.normalize_email(email),
-            nickname=nickname,
-        )
-        user.set_password(password)
-        user.save()
-        return user
-    
-    def create_superuser(self, nickname, email, password):
-        """
-        Create a super user
-        """
-        user = self.create_user(
-            email=email,
-            nickname=nickname,
-            password=password,
-        )
-        user.is_admin = True
-        user.is_staff = True
-        user.is_superuser = True
-        user.save(using=self._db)
-        return user
+from .managers import AccountManager
 
 
 class Account(AbstractBaseUser):
