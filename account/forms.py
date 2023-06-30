@@ -6,8 +6,7 @@ from .models import Account
 
 
 class AccountAuthenticationForm(forms.ModelForm):
-    """
-    User Account Form 
+    """User Account Form 
     """
     password = forms.CharField(label='Password', widget=forms.PasswordInput)
 
@@ -24,15 +23,13 @@ class AccountAuthenticationForm(forms.ModelForm):
         
 
 class AccountRegisterForm(UserCreationForm):
-    """
-    User Account creation form
+    """User Account creation form
     """
     pass
 
 
 class AccountChangeForm(UserChangeForm):
-    """
-    User Account Change form
+    """User Account Change form
     """
     pass
         
