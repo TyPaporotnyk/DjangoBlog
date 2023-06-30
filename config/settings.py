@@ -30,10 +30,11 @@ INSTALLED_APPS = [
     "account",
 ]
 
-CORS_ALLOWED_ORIGINS = [
-    "192.168.149.243:5000",
-    "127.0.0.1:5000",
-]
+if not DEBUG:
+    CORS_ALLOWED_ORIGINS = [
+        "192.168.149.243:5000",
+        "127.0.0.1:5000",
+    ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

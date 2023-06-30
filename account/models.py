@@ -1,11 +1,18 @@
 from uuid import uuid4
+import os
 
 from django.db import models
+from django.dispatch import receiver
 from django.core.validators import FileExtensionValidator
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.utils.translation import gettext_lazy as _
 
-from .services import get_custom_user_img_path, get_default_user_img_path, validate_size_image
+from .services import (
+    get_custom_user_img_path,
+    get_default_user_img_path,
+    validate_size_image,
+    delete_old_file
+)
 
 
 class AccountManager(BaseUserManager):
@@ -61,7 +68,7 @@ class Account(AbstractBaseUser):
         default=get_default_user_img_path,
         blank=True,
         null=True,
-        validators=[FileExtensionValidator(allowed_extensions=['jpg']), validate_size_image]
+        validators=[FileExtensionValidator(allowed_extensions=['jpg', 'jpeg']), validate_size_image]
     )
 
     date_joined = models.DateTimeField(auto_now_add=True)
@@ -85,3 +92,12 @@ class Account(AbstractBaseUser):
     
     def __str__(self) -> str:
         return f'{self.nickname}'
+
+
+@receiver(models.signals.post_delete, sender=Account)
+def auto_delete_file_on_delete(sender, instance, **kwargs):
+    """Delete user photo file on delete model"""
+    if instance.img:
+        img_file_path = instance.img.path
+        if "default" not in img_file_path:
+            delete_old_file(instance.img.path)
