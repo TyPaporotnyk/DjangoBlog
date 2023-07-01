@@ -34,8 +34,6 @@ def login_view(request, *args, **kwargs):
 	if user.is_authenticated:
 		return redirect("account")
 
-	destination = get_redirect_name(request)
-
 	if request.POST:
 		form = AccountAuthenticationForm(request.POST)
 		if form.is_valid():
@@ -63,8 +61,6 @@ def register_view(request, *args, **kwargs):
 	user = request.user
 	if user.is_authenticated:
 		return redirect("account")
-	
-	destination = get_redirect_name(request)
 
 	if request.POST:
 		form = AccountRegisterForm(request.POST)
