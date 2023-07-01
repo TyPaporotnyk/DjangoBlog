@@ -1,12 +1,18 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate, logout
+import logging
+
+from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
+from django.shortcuts import redirect, render
 
+from .forms import AccountAuthenticationForm, AccountRegisterForm
 from .services import get_redirect_name
-from .forms import AccountAuthenticationForm
 
+logger = logging.getLogger(__name__)
 
-def index(request):
+def index_view(request):
+    """
+	View function render the account page for an user
+	"""
     return render(request, "account/account.html")
 
 
@@ -18,9 +24,9 @@ def logout_view(request):
 	return redirect("home")
 
 
-def login(request, *args, **kwargs):
+def login_view(request, *args, **kwargs):
 	"""
-    Function to login as the user and redirect to the home page
+    Function to login as an user and redirect to the account page
     """
 	context = {}
 
@@ -33,19 +39,46 @@ def login(request, *args, **kwargs):
 	if request.POST:
 		form = AccountAuthenticationForm(request.POST)
 		if form.is_valid():
-			email = request.POST['email']
-			password = request.POST['password']
-			user = authenticate(email=email, password=password)
-
-			if user:
-				login(request, user)
-				if destination:
-					return redirect(destination)
+			nickname = form.cleaned_data['nickname']
+			password = form.cleaned_data['password']
+			account = authenticate(nickname=nickname, password=password)
+			if account:
+				login(request, account)
+				logger.info(f"User \"{account}\" has been login")
 				return redirect("account")
-
 	else:
 		form = AccountAuthenticationForm()
 
 	context['login_form'] = form
 
 	return render(request, "account/login.html", context)
+
+
+def register_view(request, *args, **kwargs):
+	"""
+	View function to create and register an account
+	"""
+	context = {}
+	
+	user = request.user
+	if user.is_authenticated:
+		return redirect("account")
+	
+	destination = get_redirect_name(request)
+
+	if request.POST:
+		form = AccountRegisterForm(request.POST)
+		if form.is_valid():
+			form.save()
+			nickname = form.cleaned_data['nickname'].lower()
+			raw_password = form.cleaned_data['password1']
+			account = authenticate(nickname=nickname, password=raw_password)
+			logger.info(f"New user {account} has been registered")
+			login(request, account)
+			return redirect('account')
+	else:
+		form = AccountRegisterForm()
+
+	context['signup_form'] = form
+
+	return render(request, "account/register.html", context)

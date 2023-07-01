@@ -1,8 +1,7 @@
 import os
-
 from pathlib import Path
-from dotenv import load_dotenv
 
+from dotenv import load_dotenv
 
 load_dotenv()
 
@@ -49,12 +48,16 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "config.urls"
 
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.AllowAllUsersModelBackend", 
+    "account.backends.CaseInsensitiveModelBackend",
+]
 
 # Templates
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(BASE_DIR, 'templates')],
+        "DIRS": [os.path.join(BASE_DIR, "templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -106,13 +109,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = 'account.Account'
+AUTH_USER_MODEL = "account.Account"
 
 
 # Internationalization
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = "UTC"
 
 USE_I18N = True
 
@@ -122,11 +125,78 @@ USE_TZ = True
 
 
 # Static / Media
-STATIC_URL = '/static/'
+STATIC_URL = "/static/"
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 STATIC_ROOT = os.path.join(BASE_DIR, "collectedstatic")
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+# Logging
+LOG_PATH = os.path.join(BASE_DIR, "logs")
+if not os.path.exists(LOG_PATH):
+    os.makedirs(LOG_PATH, exist_ok=True)
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "root": {
+        "level": "INFO",
+        "handlers": ["console", "log_file"],
+    },
+    "formatters": {
+        "verbose": {
+            "format": "[%(asctime)s] %(levelname)s [%(name)s.%(funcName)s:%(lineno)d %(module)s] %(message)s",
+        }
+    },
+    "filters": {
+        "require_debug_false": {
+            "()": "django.utils.log.RequireDebugFalse",
+        },
+        "require_debug_true": {
+            "()": "django.utils.log.RequireDebugTrue",
+        },
+    },
+    "handlers": {
+        "log_file": {
+            "level": "INFO",
+            "class": "logging.handlers.TimedRotatingFileHandler",
+            "filename": os.path.join(LOG_PATH, "djangoblog.log"),
+            "when": "D",
+            "formatter": "verbose",
+            "interval": 1,
+            "delay": True,
+            "backupCount": 5,
+            "encoding": "utf-8"
+        },
+        "console": {
+            "level": "DEBUG",
+            "filters": ["require_debug_true"],
+            "class": "logging.StreamHandler",
+            "formatter": "verbose"
+        },
+        "null": {
+            "class": "logging.NullHandler",
+        },
+        "mail_admins": {
+            "level": "ERROR",
+            "filters": ["require_debug_false"],
+            "class": "django.utils.log.AdminEmailHandler"
+        }
+    },
+    "loggers": {
+        "config": {
+            "handlers": ["log_file", "console"],
+            "level": "INFO",
+            "propagate": True,
+        },
+        "django.request": {
+            "handlers": ["mail_admins"],
+            "level": "ERROR",
+            "propagate": False,
+        }
+    }
+}

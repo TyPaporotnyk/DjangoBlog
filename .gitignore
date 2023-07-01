@@ -92,3 +92,5 @@ venv
 
 media/*
 !media/default/*
+
+logs/

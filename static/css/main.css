@@ -1,6 +1,30 @@
 *,
 *::before,
-*::after{
-    margin: 0;
-    padding: 0;
+*::after {
+  margin: 0;
+  padding: 0;
+}
+
+/* Register form */
+.card-signin {
+  width: 100%;
+  max-width: 400px;
+  padding: 15px;
+  margin: auto;
+}
+
+.form-signin input[type="email"] {
+  margin-bottom: 10px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="text"] {
+  margin-bottom: 10px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: -1px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }

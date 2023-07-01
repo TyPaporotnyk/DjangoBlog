@@ -1,18 +1,14 @@
 from uuid import uuid4
 
+from django.contrib.auth.models import AbstractBaseUser
+from django.core.validators import FileExtensionValidator
 from django.db import models
 from django.dispatch import receiver
-from django.core.validators import FileExtensionValidator
-from django.contrib.auth.models import AbstractBaseUser
 from django.utils.translation import gettext_lazy as _
 
-from .services import (
-    get_custom_user_img_path,
-    get_default_user_img_path,
-    validate_size_image,
-    delete_old_file
-)
 from .managers import AccountManager
+from .services import (delete_old_file, get_custom_user_img_path,
+                       get_default_user_img_path, validate_size_image)
 
 
 class Account(AbstractBaseUser):
