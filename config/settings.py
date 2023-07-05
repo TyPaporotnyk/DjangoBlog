@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     "corsheaders",
 
     "account",
+    "blog",
 ]
 
 if not DEBUG:

@@ -4,53 +4,28 @@
 
 {% block content %}
 
-<style type="text/css">
-.card-signin {
-  width: 100%;
-  max-width: 400px;
-  padding: 15px;
-  margin: auto;
-}
-.form-signin input[type="email"] {
-  margin-bottom: 10px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
-.form-signin input[type="text"] {
-  margin-bottom: 10px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
-.form-signin input[type="password"] {
-  margin-bottom: -1px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
-.form-wraper{
-    margin-bottom: 8px;
-}
-
-</style>
-
-<section id="login">
-<div class="container-fluid">
-    <div class="row justify-content-center">
-        <div class="card card-signin">
-            <h1 style="text-align: center;">
+<div class="login">
+    <div class="container">
+        <div class="login__body">
+            <h1 class="login__title title">
                 Login
             </h1>
-            <div class="card-body">
-                <form class="form-signin" method="post">
+            <div class="login__form">
+                <form class="form__control" method="post">
                     {% csrf_token %}
-                    <div class="form-wraper">
-                        <label for="nickname" class="form-label">nickname</label>
-                        <input type="text" name="nickname" id="inputNickname" class="form-control" placeholder="nickname" required>
+                    <div class="form__wraper input">
+                        <label for="nickname" class="form__label">Nickname</label>
+                        <input type="text" name="nickname" id="inputNickname" class="form__input" placeholder="nickname" required>
                     </div>
-                    <div class="form-wraper">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" name="password" id="inputPassword1" class="form-control" placeholder="password" required>
+                    <div class="form__wraper input">
+                        <label for="password" class="form__label">Password</label>
+                        <input type="password" name="password" id="inputPassword1" class="form__input" placeholder="password" required>
                     </div>
 
+                    <div class="form__wraper btn">
+                        <button class="form__button" type="submit">Login</button>
+                    </div>
+                    
                     {% for field in login_form %}
                     <p>
                     {% for error in field.errors %}
@@ -63,14 +38,10 @@
 					<p>{{login_form.non_field_errors}}</p>
 				    </div>
 				    {% endif %}
-
-                    <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
-</section>
-
 
 {% endblock content %}

@@ -1,63 +1,168 @@
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
+:root{
+  --color-background-main: #fff;
+  --color-background-dark: #f9fafb;
+  --color-text-code: #DED3A6;
+  --color-text-header: #111827;
+  --color-text-paragraph: #374151;
+  --color-text-link: #3b82f6;
+  --color-accept: #4CAF50;
+  --color-accept-dark: #3fa042;
+
+  --header-height: 80px;
+  --footer-height: 65px;
 }
 
-.container {
-  max-width: 1200px;
+body{
+	font-family: Roboto, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";;
+  background-color: var(--color-background-main);
+  color: var(--color-text-paragraph);;
+}
+.wrapper {
+	min-height: 100%;
+	overflow: hidden;
+
+	display: flex;
+	flex-direction: column;
+}
+.container{
+  max-width: 1180px;
   margin: 0 auto;
 }
-
-/* Header */
-.site-navbar{
-  -webkit-box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
-  -moz-box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
-  box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+.content{
+  flex: 1 1 auto;
 }
-.hedaer-content{
+.header{
+  border-bottom: 0.1px solid var(--color-text-paragraph);
+}
+.header__row{
   display: flex;
-  flex-direction: row;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+
+  height: var(--header-height);
 }
-.site-logo{
+.header__logo a{
+  color: var(--color-text-dark);
   font-size: 36px;
 }
-.hedaer-nav{
-  display: block;
+.header__logo image{ }
+.header__nav{
+  display: flex;
+  gap: 16px;
+
+  font-size: 16px;
 }
-.site-menu{
-  display: block;
+.header__nav a{
+  color: var(--color-text-dark);
 }
-.site-menu>li{
-  display: inline-block;
-  margin-right: 12px;
+.burger_menu{
+  display: none;
+}
+.footer{
+  border-top: 0.1px solid var(--color-text-paragraph);
+}
+.footer__row{
+  display: flex;
+  height: 65px;
+  justify-content: center;
+  align-items: center;
+}
+.footer__text{
+  font-size: 24px;
+  color: var(--color-text-dark);
+  letter-spacing: 0.3px;
+}
+.page_title{
+  background-color: var(--color-background-dark);
+}
+.page_title__row{
+  height: 340px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.page_title__row h1{
+  font-size: 52px;
+  max-width: 800px;
+  text-align: center;
+  font-weight: 500;
+  line-height: 1.2;
+}
+.title{
+  font-size: 46px;
+  line-height: 1.2;
+  letter-spacing: 0.3px;
+  color: var(--color-text-header);
 }
 
-/* End header */
+/* Login */
+.login__body{
+  /* height: calc( 100vh - var(--header-height) - var(--footer-height)); */
 
-/* Register form */
-.card-signin {
-  width: 100%;
-  max-width: 400px;
-  padding: 15px;
-  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 110px;
 }
+.login__title{
+  margin-bottom: 12px;
+}
+.login__form{
+  background-color: var(--color-background-dark);
+  padding: 24px;
+  border-radius: 5px;
+  /* border: 0.1px solid var(--color-text-header); */
+}
+.form__control{
 
-.form-signin input[type="email"] {
-  margin-bottom: 10px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
 }
-.form-signin input[type="text"] {
-  margin-bottom: 10px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
+.form__wraper{
+  display: flex;
 }
-.form-signin input[type="password"] {
-  margin-bottom: -1px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+.input{
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+
+  margin-bottom: 12px;
 }
+.btn{
+  justify-content: end;
+  margin-bottom: 12px;
+}
+.form__label{
+  font-size: 24px;
+  line-height: 1.2;
+  letter-spacing: 0.3px;
+  padding: 7px 0;
+}
+.form__input{
+  font-size: 16px;
+  padding: 6px 12px;
+  border: 0.1px solid transparent;
+  border-radius: 5px;
+  outline-color: none;
+
+  transition: border-color 0.3s ease-in-out;
+}
+.form__input:focus{
+  border-color: var(--color-text-header);
+  outline: none;
+}
+.form__button{
+  background-color: var(--color-accept-dark);
+  color: var(--color-background-dark);
+  border-radius: 5px;
+  font-size: 16px;
+  width: 120px;
+  height: 40px;
+  transition: background-color 0.3s ease-in-out;
+  /* padding: 8px 18px; */
+}
+.form__button:hover{
+  background-color: var(--color-accept);
+}
+/* End login */
+
