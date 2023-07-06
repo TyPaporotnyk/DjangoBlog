@@ -7,5 +7,56 @@
 
 {% include 'blog/blog_title.html' %}
 
+<div class="blog">
+    <div class="container">
+        <div class="blog__row">
+            <div class="blog__columns">
+                <div class="blog__cards">
+                    {% for post in posts %}
+                    <div class="blog__card card">
+                        <div class="card__title"><a href="#">{{ post.title }}</a></div>
+                        <div class="card__description">
+                            <p>
+                                {{ post.description }}
+                            </p>
+                        </div>
+                        <div class="card__author">
+                            <div class="author__photo">
+                                <img src="{{ post.author.img.url }}" alt="author logo">
+                            </div>
+                            <div class="author__name">{{ post.author.nickname }}</div>
+                            <div class="author__last-update">Last updated on {{ post.updated_at }}</div>
+                        </div>
+                        <div class="card__tags">
+                            <div class="card__tag tag">WebDesign</div>
+                            <div class="card__tag tag">Scraping</div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="blog__next-page">
+                    <button>load more</button>
+                </div>
+            </div>
+            <aside class="blog-control">
+                <div class="sticky">
+                    <div class="control__row">
+                        <div class="control__element">
+                            <form method="get" action="/blog/search/" class="control__find">
+                                <div class="find__ico">
+                                    <span class="material-symbols-outlined">
+                                        search
+                                    </span>
+                                </div>
+                                <input class="find__input" name="q" type="text" placeholder="search...">
+                                <button class="find__btn">Search</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
 
 {% endblock content %}
