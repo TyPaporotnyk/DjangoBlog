@@ -16,7 +16,7 @@ class AccountAdmin(UserAdmin):
     
     fieldsets = (
         (None, {
-            'fields': ('id', 'nickname', 'email', 'img', 'date_joined', 'last_login')
+            'fields': ('id', 'nickname', 'email', 'img', 'is_admin', 'is_active', 'date_joined', 'last_login')
         }),
     ) 
 

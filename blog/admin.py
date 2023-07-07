@@ -7,3 +7,7 @@ class PostAdmin(admin.ModelAdmin):
     list_display = ("id", "title", "author", "created_at", "updated_at")
     readonly_fields = ("id", "created_at", "updated_at")
 
+    list_display_links = ("title", )
+
+    prepopulated_fields = {"slug": ("title", )}
+

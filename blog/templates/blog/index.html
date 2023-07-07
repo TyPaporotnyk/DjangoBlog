@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %}Blog{% endblock %}
 
 {% block content %}
 
@@ -14,7 +15,7 @@
                 <div class="blog__cards">
                     {% for post in posts %}
                     <div class="blog__card card">
-                        <div class="card__title"><a href="#">{{ post.title }}</a></div>
+                        <div class="card__title"><a href="{% url 'post' post.slug %}">{{ post.title }}</a></div>
                         <div class="card__description">
                             <p>
                                 {{ post.description }}
@@ -35,23 +36,19 @@
                     {% endfor %}
                 </div>
                 <div class="blog__next-page">
-                    <button>load more</button>
+                    <button id="load-more">load more</button>
                 </div>
             </div>
-            <aside class="blog-control">
-                <div class="sticky">
-                    <div class="control__row">
-                        <div class="control__element">
-                            <form method="get" action="/blog/search/" class="control__find">
-                                <div class="find__ico">
-                                    <span class="material-symbols-outlined">
-                                        search
-                                    </span>
-                                </div>
-                                <input class="find__input" name="q" type="text" placeholder="search...">
-                                <button class="find__btn">Search</button>
-                            </form>
-                        </div>
+            <aside class="blog-control sticky">
+                <div class="control__row">
+                    <div class="control__element">
+                        <form method="get" action="{% url 'search' %}" class="control__find">
+                            <div class="find__ico">
+                                <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                            </div>
+                            <input type="search" class="find__input" id="defaul-search" name="q" type="text" placeholder="search..." required>
+                            <button type="submit" class="find__btn">Search</button>
+                        </form>
                     </div>
                 </div>
             </aside>
