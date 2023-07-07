@@ -57,11 +57,11 @@ def register_view(request, *args, **kwargs):
 	View function to create and register an account
 	"""
 	context = {}
-	
+
 	user = request.user
 	if user.is_authenticated:
 		return redirect("account")
-
+	
 	if request.POST:
 		form = AccountRegisterForm(request.POST)
 		if form.is_valid():
