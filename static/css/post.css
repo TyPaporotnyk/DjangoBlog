@@ -1,0 +1,93 @@
+/* Стили для текстовых тегов */
+p {
+    margin-bottom: 1.25em;
+    margin-top: 1.25em;
+}
+
+h1 {
+    color: #111827;
+    font-weight: 700;
+    font-size: 1.5em;
+    margin-top: 2em;
+    margin-bottom: 1em;
+    line-height: 1.3333333;
+    letter-spacing: -0.025em;
+}
+
+/* Стили для списковых тегов */
+ol {
+    list-style-type: decimal;
+    margin-top: 1.25em;
+    margin-bottom: 1.25em;
+    padding-left: 1.625em;
+}
+
+li {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    padding-left: 0.375em;
+}
+h2 {
+    color: #111827;
+    font-weight: 700;
+    font-size: 1.5em;
+    margin-top: 2em;
+    margin-bottom: 1em;
+    line-height: 1.3333333;
+    letter-spacing: -0.025em;
+}
+
+/* Стили для блока предварительно отформатированного текста */
+pre {
+    display: block;
+    color: #111827;
+    background-color: #fdf6e3;
+    overflow-x: auto;
+    font-weight: 400;
+    font-size: 0.875em;
+    line-height: 1.7142857;
+    margin-top: 1.7142857em;
+    margin-bottom: 1.7142857em;
+    border-radius: 0.375rem;
+    padding-top: 0.8571429em;
+    padding-right: 1.1428571em;
+    padding-bottom: 0.8571429em;
+    padding-left: 1.1428571em;
+    padding: 0;
+
+    color: #586e75;
+    background: #fdf6e3;
+
+    display: block;
+    overflow-x: auto;
+    padding: 1em;
+}
+
+code {
+    color: #ec4899;
+    font-weight: 600;
+    font-size: 0.875em;
+    background-color: #f3f4f6;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-radius: 0.25rem;
+}
+blockquote{
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+    font-weight: 500;
+    font-style: normal;
+    color: #111827 ;
+    border-left: 5px solid #e5e7eb;
+    /* border-left-width: 0.25rem;
+    border-left-color: #c81c1c; */
+    quotes: "\201C""\201D""\2018""\2019";
+    margin-top: 1.6em;
+    margin-bottom: 1.6em;
+    padding-left: 1em;
+}

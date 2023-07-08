@@ -2,6 +2,10 @@
 {% load static %}
 
 {% block title %}{{post.title}}{% endblock %}
+{% block styleeditor %}
+    <link rel="stylesheet" href="{% static 'css/post.css' %}" type="text/css">
+{% endblock %}
+
 
 {% block content %}
 
@@ -10,11 +14,12 @@
 <div class="post">
     <div class="container">
         <div class="post__row">
-            <header class="main-header">HEADER</header>
-            <div class="main-content">MAIN CONTENT</div>
-            <footer class="main-footer">FOOTER</footer>
+            <div class="blog__content post">
+                {{post.content|safe}}
+            </div>
         </div>
     </div>
 </div>
+
 
 {% endblock content %}
