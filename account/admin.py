@@ -10,22 +10,22 @@ class AccountAdmin(UserAdmin):
     """
     User account admin
     """
-    list_display = ('nickname', 'email')
 
-    readonly_fields = ('id', 'date_joined', 'last_login') 
-    
+    list_display = ('nickname', 'email')
+    readonly_fields = ('id', 'date_joined', 'last_login')
+    prepopulated_fields = {'slug': ('nickname', )}
     fieldsets = (
         (None, {
-            'fields': ('id', 'nickname', 'email', 'img', 'is_admin', 'is_active', 'date_joined', 'last_login')
+            'fields': ('id', 'nickname', 'email', 'img', 'slug', 'is_admin', 'is_active',
+                       'is_staff', 'is_superuser', 'date_joined', 'last_login'),
         }),
-    ) 
-
+    )
     add_fieldsets = (
         (None, {
-            "classes": ("wide",),
-            'fields': ('nickname', 'email', 'password1', 'password2')
+            'classes': ('wide',),
+            'fields': ('nickname', 'email', 'password1', 'password2'),
         }),
-    ) 
+    )
 
     filter_horizontal = ()
     ordering = ()
