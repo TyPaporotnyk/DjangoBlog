@@ -1,9 +1,7 @@
-/* Стили для текстовых тегов */
 p {
     margin-bottom: 1.25em;
     margin-top: 1.25em;
 }
-
 h1 {
     color: #111827;
     font-weight: 700;
@@ -13,15 +11,12 @@ h1 {
     line-height: 1.3333333;
     letter-spacing: -0.025em;
 }
-
-/* Стили для списковых тегов */
-ol {
+ol, ul {
     list-style-type: decimal;
     margin-top: 1.25em;
     margin-bottom: 1.25em;
     padding-left: 1.625em;
 }
-
 li {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
@@ -36,8 +31,6 @@ h2 {
     line-height: 1.3333333;
     letter-spacing: -0.025em;
 }
-
-/* Стили для блока предварительно отформатированного текста */
 pre {
     display: block;
     color: #111827;
@@ -62,7 +55,6 @@ pre {
     overflow-x: auto;
     padding: 1em;
 }
-
 code {
     color: #ec4899;
     font-weight: 600;
