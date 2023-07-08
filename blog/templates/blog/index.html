@@ -15,13 +15,14 @@
                 <div class="blog-search">
                     {% if search_query %}
                     <div class="search__res">
-                        {% if posts|length == 1 %}
-                        We found {{posts|length}} post by "{{search_query}}" query
-                        {% else %}
-                        We found {{posts|length}} posts by "{{search_query}}" query
-                        {% endif %}
+                        Search result for: {{search_query}}
+                    </div>
+                    {% elif selected_tag %}
+                    <div class="search__res">
+                        Search result for category: {{selected_tag.name}}
                     </div>
                     {% endif %}
+
                 </div>
                 <div class="blog__cards">
                     {% for post in posts %}
@@ -34,9 +35,11 @@
                         </div>
                         <div class="card__author">
                             <div class="author__photo">
-                                <img src="{{ post.author.img.url }}" alt="author logo">
+                                <a href="{% url 'account' post.author.slug %}">
+                                    <img src="{{ post.author.img.url }}" alt="author logo">
+                                </a>
                             </div>
-                            <div class="author__name">{{ post.author.nickname }}</div>
+                            <div class="author__name"><a href="{% url 'account' post.author.slug %}">{{ post.author.nickname }}</a></div>
                             <div class="author__last-update">Last updated on {{ post.updated_at }}</div>
                         </div>
                         <div class="card__tags">
@@ -68,6 +71,16 @@
                                 placeholder="search..." required>
                             <button type="submit" class="find__btn">Search</button>
                         </form>
+                    </div>
+                    <div class="control__element">
+                        <div class="control__head">
+                            Categories
+                        </div>
+                        <div class="control__tags">
+                            {% for tag in tags %}
+                            <a href="{% url 'category' tag.slug %}" class="tag">{{ tag.name }}</a>
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
             </aside>

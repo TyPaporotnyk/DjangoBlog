@@ -7,6 +7,7 @@
   --color-border: #b2b5bb;
   --color-text-link: #3b82f6;
   --color-text-link-hovered: #266bdb;
+  --color-text-light: #dbeafe;
   --color-accept: #4caf50;
   --color-accept-dark: #3fa042;
 
@@ -254,6 +255,12 @@ pre {
   font-size: 16px;
   font-weight: 300;
 }
+.author__name a{
+  color: inherit;
+}
+.author__name a:hover{
+  text-decoration: underline;
+}
 .author__last-update {
   font-size: 16px;
   padding-left: 8px;
@@ -275,6 +282,10 @@ pre {
   font-size: 12px;
   font-weight: 500;
   color: var(--color-background-main);
+}
+.tag:hover{
+  background-color: var(--color-text-header);
+  color: var(--color-background-dark);
 }
 .blog__next-page {
   margin-bottom: 32px;
@@ -301,9 +312,16 @@ pre {
   gap: 20px;
 }
 .control__element {
+  display: flex;
+  flex-direction: column;
   padding: 16px;
+  gap: 16px;
   border: 0.1px solid var(--color-border);
   border-radius: 5px;
+}
+.control__head{
+  text-align: center;
+  font-size: 32px;
 }
 .control__find {
   display: flex;
@@ -343,11 +361,17 @@ pre {
   color: var(--color-background-dark);
 }
 .search__res {
-  background-color: var(--color-text-link);
-  text-align: center;
-  padding: 12px 0;
-  border-radius: 50px;
-  color: var(--color-background-main);
+  background-color: var(--color-text-light);
+  text-align: left;
+  padding: 16px 16px;
+  font-size: 16px;
+  border-radius: 10px;
+  color: var(--color-text-link);
   font-weight: 500;
   margin-bottom: 12px;
+}
+.control__tags{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
 }
