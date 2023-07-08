@@ -34,7 +34,7 @@ class Account(AbstractBaseUser):
         validators=[FileExtensionValidator(allowed_extensions=['jpg', 'jpeg']), validate_size_image]
     )
 
-    slug = models.SlugField(null=False)
+    slug = models.SlugField(default='', null=False, unique=True)
 
     date_joined = models.DateTimeField(auto_now_add=True)
     last_login = models.DateTimeField(auto_now=True)

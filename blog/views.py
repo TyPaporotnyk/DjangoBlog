@@ -1,7 +1,10 @@
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, render
 
-from .models import Post
+from .models import (
+    Post, 
+    Tag
+)
 
 
 def index_view(request):
@@ -21,6 +24,18 @@ def search_view(request):
     context = {
         'posts': posts,
         'search_query': query,
+    }
+
+    return render(request, 'blog/index.html', context)
+
+
+def category_view(request, slug):
+    tag = get_object_or_404(Tag, slug=slug)
+    posts = Post.objects.filter(tags=tag).all() \
+                        .order_by('-created_at').prefetch_related('author')
+    context = {
+        'posts': posts,
+        'tag': tag,
     }
 
     return render(request, 'blog/index.html', context)

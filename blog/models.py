@@ -9,8 +9,18 @@ class Post(models.Model):
     author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     slug = models.SlugField(default='', null=False, unique=True)
 
+    tags = models.ManyToManyField('Tag', blank=True)
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self) -> str:
         return self.title
+    
+
+class Tag(models.Model):
+    name = models.CharField(max_length=50, unique=True, null=False)
+    slug = models.SlugField(default='', unique=True, null=False)
+
+    def __str__(self) -> str:
+        return self.name
