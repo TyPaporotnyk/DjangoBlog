@@ -4,12 +4,14 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
-    path("admin/", admin.site.urls, name="admin"),
+    path('admin/', admin.site.urls, name='admin'),
 
-    path("account/", include("account.urls")),
-    path("", include("blog.urls"))
+    path('account/', include('account.urls')),
+    path('blog/', include('blog.urls')),
+
 ]
 
 if settings.DEBUG:
+    urlpatterns += [path('__debug__/', include('debug_toolbar.urls'))]
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

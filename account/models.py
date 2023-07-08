@@ -7,8 +7,12 @@ from django.dispatch import receiver
 from django.utils.translation import gettext_lazy as _
 
 from .managers import AccountManager
-from .services import (delete_old_file, get_custom_user_img_path,
-                       get_default_user_img_path, validate_size_image)
+from .services import (
+    delete_old_file,
+    get_custom_user_img_path,
+    get_default_user_img_path,
+    validate_size_image,
+)
 
 
 class Account(AbstractBaseUser):
@@ -30,6 +34,8 @@ class Account(AbstractBaseUser):
         validators=[FileExtensionValidator(allowed_extensions=['jpg', 'jpeg']), validate_size_image]
     )
 
+    slug = models.SlugField(default='', null=False, unique=True)
+
     date_joined = models.DateTimeField(auto_now_add=True)
     last_login = models.DateTimeField(auto_now=True)
 
@@ -45,10 +51,10 @@ class Account(AbstractBaseUser):
 
     def has_perm(self, perm, obj=None):
         return self.is_admin
-    
+
     def has_module_perms(self, app_label):
         return True
-    
+
     def __str__(self) -> str:
         return f'{self.nickname}'
 

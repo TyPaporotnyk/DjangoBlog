@@ -1,0 +1,17 @@
+{% load static %}
+<div class="page_title">
+    <div class="container">
+        <div class="page_title__row">
+            <h1>
+                {{post.title}}
+            </h1>
+            <div class="created_by">
+                <div class="author__photo">
+                    <img src="{{ post.author.img.url }}" alt="author logo">
+                </div>
+                <div class="author__name">{{ post.author.nickname }}</div>
+                <div class="author__last-update">Last updated on {{ post.updated_at.date }}</div>
+            </div>
+        </div>
+    </div>
+</div>
