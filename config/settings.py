@@ -14,6 +14,9 @@ DEBUG = bool(int(os.getenv('DEBUG', False)))
 
 ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '127.0.0.1').split(' ')
 
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
 
 # Application definition
 INSTALLED_APPS = [
@@ -25,6 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'corsheaders',
+    'debug_toolbar',
 
     'account',
     'blog',
@@ -37,9 +41,10 @@ if not DEBUG:
     ]
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -126,7 +131,7 @@ USE_TZ = True
 
 
 # Static / Media
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'collectedstatic')
 

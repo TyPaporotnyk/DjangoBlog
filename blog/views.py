@@ -1,26 +1,35 @@
-from django.shortcuts import render, get_object_or_404
+from django.db.models import Q
+from django.shortcuts import get_object_or_404, render
 
 from .models import Post
 
 
 def index_view(request):
-    posts = Post.objects.all().order_by('-created_at')
-    context = {}
-    context['posts'] = posts
+    posts = Post.objects.all().order_by('-created_at').prefetch_related('author')
+    context = {
+        'posts': posts,
+    }
 
     return render(request, 'blog/index.html', context)
 
 
 def search_view(request):
-    if request.GET:
-        query = request.GET.get('q')
+    query = request.GET.get('q')
+    posts = Post.objects.filter(Q(title__icontains=query)).all() \
+                        .order_by('-created_at').prefetch_related('author')
 
-        pass
+    context = {
+        'posts': posts,
+        'search_query': query,
+    }
+
+    return render(request, 'blog/index.html', context)
 
 
 def post_view(request, slug):
     post = get_object_or_404(Post, slug=slug)
-    context = {}
-    context['post'] = post
+    context = {
+        'post': post,
+    }
 
     return render(request, 'blog/post.html', context)
