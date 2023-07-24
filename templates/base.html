@@ -12,9 +12,9 @@
     <title>{% block title %}{% endblock %}</title>
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&amp;display=swap" rel="stylesheet">
-
-    <link rel="shortcut icon" href="{% static 'img/ico/ico-25.ico' %}">
-    <link rel="icon" href="{% static 'img/ico/ico-25.ico' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.27.0/themes/prism.min.css" />
+    <link rel="shortcut icon" href="{% static 'img/ico/logo-25.ico' %}">
+    <link rel="icon" href="{% static 'img/ico/logo-25.ico' %}">
 
     <link rel="stylesheet" href="{% static 'css/normalize.css' %}" type="text/css">
     {% block styleeditor %}{% endblock %}
@@ -22,6 +22,7 @@
 
     <script src="{% static 'js/jquery.min.js' %}" defer></script>
     <script src="{% static 'js/app.js' %}" defer></script>
+
 </head>
 
 <body>
@@ -33,7 +34,6 @@
         </div>
         {% include 'footer.html' %}
     </div>
-
 </body>
 
 </html>

@@ -93,6 +93,7 @@ body {
 }
 .footer {
   border-top: 0.1px solid var(--color-border);
+  background-color: var(--color-background-main);
 }
 .footer__row {
   display: flex;

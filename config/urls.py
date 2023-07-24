@@ -12,8 +12,8 @@ urlpatterns = [
     path('cookies/', views.cookies_view, name='cookies'),
     path('privacy/', views.privacy_view, name='privacy'),
 
-    path('account/', include('account.urls')),
-    path('blog/', include('blog.urls')),
+    path('account/', include('src.account.urls')),
+    path('blog/', include('src.blog.urls')),
 ]
 
 if settings.DEBUG:
