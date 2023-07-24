@@ -90,10 +90,13 @@ db.sqlite3
 
 venv
 
-media/*
-!media/default/*
+media/avatar
 
 logs/
 
 .vscode/
 /collectedstatic/
+
+dump.json
+
+.idea

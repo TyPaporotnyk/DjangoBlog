@@ -40,7 +40,7 @@
                                 </a>
                             </div>
                             <div class="author__name"><a href="{% url 'account' post.author.slug %}">{{ post.author.nickname }}</a></div>
-                            <div class="author__last-update">Last updated on {{ post.updated_at }}</div>
+                            <div class="author__last-update">Last updated on {{ post.updated_at.date }}</div>
                         </div>
                         <div class="card__tags">
                             {% for tag in post.tags.all %}
