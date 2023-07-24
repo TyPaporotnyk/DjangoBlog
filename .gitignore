@@ -95,7 +95,7 @@ media/avatar
 logs/
 
 .vscode/
-/collectedstatic/
+/staticfiles/
 
 dump.json
 

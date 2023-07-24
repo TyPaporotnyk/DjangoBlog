@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}DjangoBlog{% endblock %}
+
+{% block content %}
+
+<div class="page_title">
+    <div class="container">
+        <div class="page_title__row">
+            <h1>
+                Django Blog
+            </h1>
+        </div>
+    </div>
+</div>
+
+<div class="post">
+    <div class="container">
+        <div class="post__row">
+            <div class="about">
+                <h2>
+                    About me
+                </h2>
+                <p>
+                    My name is Daniil. I’m a junior django developer. I’m doing programming around 5 years. And finaly i decide to create my own website. Because what kind programmer am i if i don’t have my own website?
+                </p>
+            </div>
+            <div class="portfolio">
+                <h2>
+                    Portfolio
+                </h2>
+                <div class="portfolio__row">
+                    <div class="portfolio__item">
+                        <div class="portfolio__image">
+                            <img src="" alt="Scraper img">
+                        </div>
+                        <div class="portfolio_detail">
+                            <h3>
+                                Houses Scraper(RealForeclose)
+                            </h3>
+                            <p>I created a RealForeclose scraper with many subsystems.<br>
+This scraper collects all data about auction house such as a house, an owner, contacts. Also this scraper collects a data about house sale status and price from Zillow, Realtor, Redfin and Chase, a crime risk and a school rating by house address. At the end scraper collects all given data to an excel file and puts at the end of the file a house picture.
+At the moment scraper works in the server and collect data around half of year without any problems.</p>
+                            <div class="tags">
+                                <div class="tag">Scraper</div>
+                                <div class="tag">Scraper</div>
+                                <div class="tag">Scraper</div>
+                                <div class="tag">Scraper</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
