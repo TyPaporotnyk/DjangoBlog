@@ -93,7 +93,7 @@ DATABASES = {
         "NAME": os.getenv("POSTGRES_DB", os.path.join(BASE_DIR, "db.sqlite3")),
         "USER": os.getenv("POSTGRES_USER", "user"),
         "PASSWORD": os.getenv("POSTGRES_PASSWORD", "12345"),
-        "HOST": os.getenv("POSTGRES_HOST", "127.0.0.1") if not DEBUG else "127.0.0.1",
+        "HOST": os.getenv("POSTGRES_HOST", "127.0.0.1"),
         "PORT": os.getenv("POSTGRES_PORT", "5432"),
     },
 }
