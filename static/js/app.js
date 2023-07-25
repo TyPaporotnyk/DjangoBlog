@@ -1,7 +1,8 @@
 $(document).ready(() => {
     /* Hamburger menu */
     $(".hamburger").on("click", (e) => {
-        $(".hamburger").toggleClass("active")
+        $(".hamburger").toggleClass("active");
+        $(".header__nav").toggleClass("active");
     })
 
     /* Load more button */
