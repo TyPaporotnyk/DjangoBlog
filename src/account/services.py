@@ -5,21 +5,21 @@ from django.core.exceptions import ValidationError
 
 def get_default_user_img_path() -> str:
     """Return a default user image path
-    Return: 
+    Return:
         (media)/default/avatar/user-avatar.jpg
     """
-    return f"default/avatar/user-avatar.jpg"
+    return "default/avatar/user-avatar.jpg"
 
 
 def get_custom_user_img_path(instance, file) -> str:
     """Return a custom user image path
-    Return: 
+    Return:
         (media)/avatar/user_id/photo.jpg
     Args:
         instance - instance object
         file - file object
     """
-    return f'avatar/user_{instance.id}/{file}'
+    return f"avatar/user_{instance.id}/{file}"
 
 
 def validate_size_image(file_obj):
@@ -42,9 +42,9 @@ def delete_old_file(path_file):
 
 
 def get_redirect_name(request):
-	"""Function to return a redirect url name"""
-	redirect = None
-	if request.GET:
-		if request.GET.get("next"):
-			redirect = str(request.GET.get("next"))
-	return redirect
+    """Function to return a redirect url name"""
+    redirect = None
+    if request.GET:
+        if request.GET.get("next"):
+            redirect = str(request.GET.get("next"))
+    return redirect
