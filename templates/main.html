@@ -11,6 +11,9 @@
             <h1>
                 Django Blog
             </h1>
+            <p>
+                Hello! My name is Daniil. I’m a junior django developer. I’m doing programming around 5 years. And <b>finally</b> i decide to create my own website. Because what kind programmer am i if i don’t have my own website?
+            </p>
         </div>
     </div>
 </div>
@@ -18,14 +21,6 @@
 <div class="post">
     <div class="container">
         <div class="post__row">
-            <div class="about">
-                <h2>
-                    About me
-                </h2>
-                <p>
-                    My name is Daniil. I’m a junior django developer. I’m doing programming around 5 years. And finaly i decide to create my own website. Because what kind programmer am i if i don’t have my own website?
-                </p>
-            </div>
             <div class="portfolio">
                 <h2>
                     Portfolio
@@ -33,7 +28,7 @@
                 <div class="portfolio__row">
                     <div class="portfolio__item">
                         <div class="portfolio__image">
-                            <img src="" alt="Scraper img">
+                            <img src="{% static 'img/portfolio/portfolio1.png' %}" alt="Scraper img">
                         </div>
                         <div class="portfolio_detail">
                             <h3>
@@ -43,10 +38,28 @@
 This scraper collects all data about auction house such as a house, an owner, contacts. Also this scraper collects a data about house sale status and price from Zillow, Realtor, Redfin and Chase, a crime risk and a school rating by house address. At the end scraper collects all given data to an excel file and puts at the end of the file a house picture.
 At the moment scraper works in the server and collect data around half of year without any problems.</p>
                             <div class="tags">
-                                <div class="tag">Scraper</div>
-                                <div class="tag">Scraper</div>
-                                <div class="tag">Scraper</div>
-                                <div class="tag">Scraper</div>
+                                <div class="tag">Scraping</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio__item">
+                        <div class="portfolio__image">
+                            <img src="{% static 'img/portfolio/portfolio2.png' %}" alt="Scraper img">
+                        </div>
+                        <div class="portfolio_detail">
+                            <h3>
+                                Broadcaster
+                            </h3>
+                            <p>This project has been develop for EvaCodes.<br>
+                                In this project you can send messages to Telegram, WhatsApp and SMS register new Telegram accounts for mailing, write messages by templates, save templates, choose account for mailing and store all sended and received messages to databse.<br>
+This project have a web interface and backend side with 3 celery tasks for mailing.<br>
+EvaCodes company uses this project for inform them contacts.
+At the moment project hosts in their server and works perfectly.</p>
+                            <div class="tags">
+                                <div class="tag">Python</div>
+                                <div class="tag">Django</div>
+                                <div class="tag">Docker</div>
+                                <div class="tag">Celery</div>
                             </div>
                         </div>
                     </div>
