@@ -16,7 +16,7 @@ jobs:
       - name: Deploy to Server
         uses: burnett01/rsync-deployments@5.2
         with:
-          switches: --exclude=".git" --exclude=".github" --exclude=".env" --exclude="media" --exclude="staticfiles" --exclude="db.json" -avzr --delete
+          switches: --exclude=".git" --exclude=".github" --exclude=".env" --exclude="media" --exclude="staticfiles" --exclude="./nginx/ssl" --exclude="db.json" -avzr --delete
           path: ./
           remote_path: /opt/DjangoBlog
           remote_host: ${{ secrets.SSH_HOST }}
